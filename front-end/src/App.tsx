@@ -1,9 +1,9 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "./App.css";
 import BasicTable from "./components/Table";
 import { useAppDispatch, useAppSelector } from "./hooks";
-import { getAllDollar, listDollar, loading } from "./redux/DollarSlice";
+import { getAllDollar, listDollar } from "./redux/DollarSlice";
 import {
   CartesianGrid,
   Line,
