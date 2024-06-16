@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { DolarRange } from "../types.global";
 import { AppThunk, RootState } from "../strore";
 import axios from "axios";
+import { URL_HOST_PROD } from "../libs/url";
 
 export interface DollarState {
   list: DolarRange[];
@@ -53,7 +54,7 @@ export const loading = (state: RootState) => state.dollar.loading;
 export const getAllDollar = (): AppThunk => async (dispatch) => {
   try {
     dispatch(setLoading());
-    const res = await axios.get("http://localhost:8000/api/dollar-values");
+    const res = await axios.get(`${URL_HOST_PROD}/api/dollar-values`);
     dispatch(getDollar(res.data));
   } catch (error) {
     console.log(error);
@@ -66,7 +67,7 @@ export const editDollarById =
     try {
       dispatch(setLoading());
       const res = await axios.patch(
-        `http://localhost:8000/api/dollar-values/${id}`,
+        `${URL_HOST_PROD}/api/dollar-values/${id}`,
         { value }
       );
       dispatch(putOneDollar(res.data));
@@ -81,7 +82,7 @@ export const deleteMultipleDollarById =
     try {
       dispatch(setLoading());
       const res = await axios.post(
-        `http://localhost:8000/api/dollar-values/delete`,
+        `${URL_HOST_PROD}/api/dollar-values/delete`,
         {
           ids: arrId,
         }
@@ -98,7 +99,7 @@ export const searchDateDollarRange =
   async (dispatch) => {
     try {
       dispatch(setLoading());
-      const res = await axios.get(`http://localhost:8000/api/dollar-values`, {
+      const res = await axios.get(`${URL_HOST_PROD}/api/dollar-values`, {
         params: {
           start_date,
           end_date,
