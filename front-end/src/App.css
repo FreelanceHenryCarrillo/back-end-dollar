@@ -1,0 +1,117 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    font-size: 40px;
+    margin-top: 20px;
+    color: rgb(1, 1, 1);
+  }
+}
+.container-hero {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.container-chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 900px;
+  height: 500px;
+  gap: 20px;
+  flex: 1;
+}
+
+.container-table {
+  display: flex;
+  flex-direction: column;
+  margin: 10;
+  flex: 1;
+  gap: 10px;
+  width: 900px;
+  height: 650px;
+  justify-content: center;
+  align-items: center;
+}
+
+.grafica {
+  width: 100%;
+  height: 100%;
+}
+
+.cell-table {
+  display: flex;
+  gap: 20px;
+
+  .cell-table-input {
+    padding: 5px;
+  }
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #131212;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button-delete-multiple {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 80px;
+  background-color: beige;
+  margin-right: 20px;
+
+  div {
+    padding: 20px;
+  }
+}
+
+.range-container {
+  display: flex;
+  gap: 19px;
+  align-items: center;
+
+  h3 {
+    color: rgb(150, 140, 140);
+    font-weight: bold;
+  }
+}
+
+.first-title {
+  padding: 5px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.container-footer-table {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
