@@ -159,8 +159,8 @@
   }
   .container-chart,
   .container-table {
-    width: 100%;
-    max-width: 450px;
+    width: 95%;
+    max-width: 430px;
   }
   .first-title {
     display: none;
