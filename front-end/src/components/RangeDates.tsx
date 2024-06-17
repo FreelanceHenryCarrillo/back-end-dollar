@@ -72,7 +72,7 @@ const RangeDates = ({
         <Button
           variant="contained"
           color={"success"}
-          style={{ height: "100%" }}
+          style={{ height: "100%", width: '150px' }}
           onClick={handleClickSearch}
         >
           <Search />
@@ -91,7 +91,7 @@ const RangeDates = ({
           toast.success("Se reinicio la data correctamente");
         }}
       >
-        Reset data
+        Reset
       </Button>
     </div>
   );
