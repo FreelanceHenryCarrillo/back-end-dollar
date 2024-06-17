@@ -84,9 +84,8 @@ public function destroyMultiple(Request $request)
 
     Dollar::whereIn('id', $ids)->delete();
 
-    $DollarGet = Dollar::orderBy('date', 'desc') ->limit(30)->get();
 
-    return response()->json($DollarGet);
+    return response()->json($ids);
 }
 
 
