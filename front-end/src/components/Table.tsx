@@ -85,9 +85,9 @@ export default function BasicTable({ data }: TableProps) {
     }
   };
 
-  const handleDeleteMultiple = async () => {
+  const handleDeleteMultiple = () => {
     if (selectMultiple.length >= 1) {
-      await dispatch(deleteMultipleDollarById(selectMultiple));
+      dispatch(deleteMultipleDollarById(selectMultiple));
       setSelectMultiple([]);
       toast.success(
         `Se realizo la eliminacion de los IDS: ${selectMultiple.map(
@@ -187,7 +187,7 @@ export default function BasicTable({ data }: TableProps) {
                         >
                           <input
                             className="cell-table-input"
-                            type="number"
+                            type="text"
                             placeholder={row.value.toString()}
                             onChange={handleInputChange}
                           />
