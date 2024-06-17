@@ -28,6 +28,9 @@
 - se realizo el comando On-Demand local
 command --> php artisan fetch:dollar-value
 
+![image](https://github.com/FreelanceHenryCarrillo/dollar-prueba-tecnica/assets/172958474/a597cabd-badb-4493-8793-6fe45dedf173)
+
+
 - tambien se coloco un funcion --> schedule --> que ejecuta cada hora el comando php artisan fetch:dollar-value
 - Testeado con el servidor de produccion de railway (cron Job)
 
