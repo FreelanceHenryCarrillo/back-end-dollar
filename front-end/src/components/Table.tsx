@@ -99,6 +99,11 @@ export default function BasicTable({ data }: TableProps) {
     }
   };
 
+  React.useEffect(() => {
+    setPage(0);
+    setRowsPerPage(10);
+  }, [newData.length]);
+
   return (
     <>
       {selectMultiple.length >= 1 && (
