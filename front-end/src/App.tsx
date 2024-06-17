@@ -24,8 +24,7 @@ function App() {
   const dispatch = useAppDispatch();
   const dollar = useAppSelector(listDollar);
 
-
-    /* Responsive */
+  /* Responsive */
   let chartWidth = 900;
   if (windowWidth < 1440) {
     chartWidth = windowWidth;
@@ -47,23 +46,36 @@ function App() {
             endDate={endDate}
           />
 
-          <LineChart
-            width={chartWidth}
-            height={500}
-            data={ dollar }
-            margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-          >
-            <Line
-              type="monotone"
-              dataKey="value"
-              label="USD"
-              stroke="#8884d8"
-            />
-            <CartesianGrid stroke="#ccc" strokeDasharray="10 10" />
-            <XAxis dataKey="date" />
-            <YAxis dataKey="value" tickSize={20} tickCount={10} tickLine />
-            <Tooltip />
-          </LineChart>
+          {!dollar.length ? (
+            <div
+              style={{
+                height: 500,
+                display: "flex",
+                alignItems: "center",
+                fontSize: "30px",
+              }}
+            >
+              NOT FOUND!
+            </div>
+          ) : (
+            <LineChart
+              width={chartWidth}
+              height={500}
+              data={dollar}
+              margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+            >
+              <Line
+                type="monotone"
+                dataKey="value"
+                label="USD"
+                stroke="#8884d8"
+              />
+              <CartesianGrid stroke="#ccc" strokeDasharray="10 10" />
+              <XAxis dataKey="date" />
+              <YAxis dataKey="value" tickSize={20} tickCount={10} tickLine />
+              <Tooltip />
+            </LineChart>
+          )}
         </section>
         <section className="container-table">
           <BasicTable data={dollar} />

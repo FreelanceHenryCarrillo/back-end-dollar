@@ -132,68 +132,84 @@ export default function BasicTable({ data }: TableProps) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {newData
-              .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
-              .sort(
-                (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
-              )
-              .map((row, i) => (
-                <TableRow
-                  key={row.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            {!newData.length ? (
+              <TableRow>
+                <TableCell
+                  style={{
+                    height: 500,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "30px",
+                  }}
                 >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      aria-label="checkbox"
-                      color="primary"
-                      data-indeterminate="false"
-                      onChange={(e) => handleChangeSelectMultiple(e, row.id)}
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.date}
-                  </TableCell>
-                  <TableCell
-                    align="inherit"
-                    onDoubleClick={() => {
-                      setIsOpenEditCell(true);
-                      setIsCellIndex(i);
-                    }}
+                  NOT FOUND!
+                </TableCell>
+              </TableRow>
+            ) : (
+              newData
+                .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                .sort(
+                  (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
+                )
+                .map((row, i) => (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    {isOpenEditCell && isCellIndex === i ? (
-                      <form
-                        className="cell-table"
-                        onSubmit={(e) => handleSumbit(e, row.id)}
-                      >
-                        <input
-                          className="cell-table-input"
-                          type="number"
-                          placeholder={row.value.toString()}
-                          onChange={handleInputChange}
-                        />
-                        <Fab
-                          color="primary"
-                          aria-label="edit"
-                          style={{ width: "40px", height: "40px" }}
-                          type="submit"
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        aria-label="checkbox"
+                        color="primary"
+                        data-indeterminate="false"
+                        onChange={(e) => handleChangeSelectMultiple(e, row.id)}
+                      />
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.date}
+                    </TableCell>
+                    <TableCell
+                      align="inherit"
+                      onDoubleClick={() => {
+                        setIsOpenEditCell(true);
+                        setIsCellIndex(i);
+                      }}
+                    >
+                      {isOpenEditCell && isCellIndex === i ? (
+                        <form
+                          className="cell-table"
+                          onSubmit={(e) => handleSumbit(e, row.id)}
                         >
-                          <Edit style={{ width: "20px", height: "100%" }} />
-                        </Fab>
-                        <Fab
-                          color="error"
-                          aria-label="edit"
-                          style={{ width: "40px", height: "40px" }}
-                          onClick={() => setIsOpenEditCell(false)}
-                        >
-                          <Cancel style={{ width: "20px", height: "100%" }} />
-                        </Fab>
-                      </form>
-                    ) : (
-                      <>{row.value}</>
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
+                          <input
+                            className="cell-table-input"
+                            type="number"
+                            placeholder={row.value.toString()}
+                            onChange={handleInputChange}
+                          />
+                          <Fab
+                            color="primary"
+                            aria-label="edit"
+                            style={{ width: "40px", height: "40px" }}
+                            type="submit"
+                          >
+                            <Edit style={{ width: "20px", height: "100%" }} />
+                          </Fab>
+                          <Fab
+                            color="error"
+                            aria-label="edit"
+                            style={{ width: "40px", height: "40px" }}
+                            onClick={() => setIsOpenEditCell(false)}
+                          >
+                            <Cancel style={{ width: "20px", height: "100%" }} />
+                          </Fab>
+                        </form>
+                      ) : (
+                        <>{row.value}</>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))
+            )}
           </TableBody>
         </Table>
       </TableContainer>
