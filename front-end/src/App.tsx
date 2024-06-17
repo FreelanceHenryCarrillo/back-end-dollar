@@ -24,9 +24,11 @@ function App() {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const dollar = useAppSelector(listDollar);
+
   const LESS_30_DAYS = -30;
 
-  const defaultData = dollar
+  /* NOTE: Data for the last 30 days */
+  const defaultData= dollar
     .filter((usd) => new Date(usd.date).getFullYear() === currentYear)
     .sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date)))
     .slice(LESS_30_DAYS);
@@ -41,7 +43,7 @@ function App() {
     <main className="container">
       <h1 className="first-title">DOLAR BALANCE</h1>
       <aside className="container-hero">
-        <div className="container-chart">
+        <section className="container-chart">
           <RangeDates
             setStartDate={setStartDate}
             startDate={startDate}
@@ -67,7 +69,7 @@ function App() {
             <YAxis dataKey="value" tickSize={20} tickCount={10} tickLine />
             <Tooltip />
           </LineChart>
-        </div>
+        </section>
         <section className="container-table">
           <BasicTable data={dollar} />
         </section>

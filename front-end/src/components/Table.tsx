@@ -26,7 +26,7 @@ interface TableProps {
 export default function BasicTable({ data }: TableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [isEditCell, setIsEditCell] = React.useState<number>(0);
+  const [isCellIndex, setIsCellIndex] = React.useState<number>(0);
   const [isOpenEditCell, setIsOpenEditCell] = React.useState<boolean>(false);
   const [valueCell, setValueCell] = React.useState<number | string | null>(
     null
@@ -146,6 +146,7 @@ export default function BasicTable({ data }: TableProps) {
                   <TableCell padding="checkbox">
                     <Checkbox
                       color="primary"
+                      data-indeterminate="false"
                       onChange={(e) => handleChangeSelectMultiple(e, row.id)}
                     />
                   </TableCell>
@@ -156,10 +157,10 @@ export default function BasicTable({ data }: TableProps) {
                     align="inherit"
                     onDoubleClick={() => {
                       setIsOpenEditCell(true);
-                      setIsEditCell(i);
+                      setIsCellIndex(i);
                     }}
                   >
-                    {isOpenEditCell && isEditCell === i ? (
+                    {isOpenEditCell && isCellIndex === i ? (
                       <form
                         className="cell-table"
                         onSubmit={(e) => handleSumbit(e, row.id)}
@@ -188,7 +189,7 @@ export default function BasicTable({ data }: TableProps) {
                         </Fab>
                       </form>
                     ) : (
-                      <>{row.value} </>
+                      <>{row.value}</>
                     )}
                   </TableCell>
                 </TableRow>

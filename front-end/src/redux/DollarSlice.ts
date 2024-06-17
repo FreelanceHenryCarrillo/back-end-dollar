@@ -36,7 +36,7 @@ export const DollarSlice = createSlice({
       state.list = updatedList;
       state.loading = false;
     },
-    deleteOneDollar: (state, action) => {
+    deleteMultipleDollar: (state, action) => {
       state.list = action.payload;
     },
     setLoading: (state) => {
@@ -45,7 +45,7 @@ export const DollarSlice = createSlice({
   },
 });
 
-export const { getDollar, putOneDollar, deleteOneDollar, setLoading } =
+export const { getDollar, putOneDollar, deleteMultipleDollar, setLoading } =
   DollarSlice.actions;
 
 export const listDollar = (state: RootState) => state.dollar.list;
@@ -88,7 +88,7 @@ export const deleteMultipleDollarById =
         }
       );
 
-      dispatch(deleteOneDollar(res.data));
+      dispatch(deleteMultipleDollar(res.data));
     } catch (error) {
       console.log(error);
     }

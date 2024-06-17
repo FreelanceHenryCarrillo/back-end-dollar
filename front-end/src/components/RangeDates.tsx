@@ -49,7 +49,7 @@ const RangeDates = ({
 
   return (
     <div className="range-container">
-      <h3>Search for date:</h3>
+      <p>Search for date:</p>
       <DatePicker
         label="Start Date"
         minDate={dayjs(YEAR_LIMIT_PAST)}
@@ -76,6 +76,7 @@ const RangeDates = ({
           onClick={handleClickSearch}
         >
           <Search />
+          search
         </Button>
       }
       <Button
