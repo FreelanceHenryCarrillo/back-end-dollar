@@ -50,11 +50,7 @@ class Kernel extends HttpKernel
         \App\Console\Commands\FetchDollarValue::class,
     ];
 
-    protected function schedule(Schedule $schedule)
-    {
-        $schedule->command('fetch:dollar-value')->hourly();
-    }
-
+ 
     /**
      * The application's middleware aliases.
      *
