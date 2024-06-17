@@ -6,7 +6,7 @@
 
 # FRONT
 
-  - Se realizo un diseño basico donde se le dio mas prioridad a las funcionalidades y a la accesibilidad y SEO
+  - Se realizo un diseño basico donde se le dio mas prioridad a las funcionalidades 
   - se realizo el diseño responsive para versiones moviles
   - se realizo 2 inputs para buscar por fechas cubriendo que la data solo llegue al año 2023 y a la actualidad
   - agegamos una multi seleccion creada propiamente sin usar la opcion de MUI para borrar varias celdas
@@ -21,7 +21,6 @@
   # Movil
 ![alt text](image-2.png)
   # Escritorio
-![pageSpeedEscritorio](image-1.png)
 ![Desing](image.png)
 
 # BACK
