@@ -154,12 +154,17 @@
 }
 
 @media (max-width: 480px) {
+  .container {
+    margin-top: 20px;
+  }
   .container-chart,
   .container-table {
-    width: 95%;
-    max-width: 400px;
+    width: 100%;
+    max-width: 450px;
   }
-
+  .first-title {
+    display: none;
+  }
   .range-container {
     p {
       display: none;

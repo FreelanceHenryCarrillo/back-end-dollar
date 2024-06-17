@@ -19,7 +19,7 @@
 - Se adjunta imagen
 
   # Movil
-
+![alt text](image-2.png)
   # Escritorio
 ![pageSpeedEscritorio](image-1.png)
 ![Desing](image.png)
