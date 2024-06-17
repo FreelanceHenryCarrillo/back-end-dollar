@@ -13,10 +13,9 @@ class DollarValueController extends Controller
         $endDate = $request->input('end_date', null);
 
         if ($startDate && $endDate) {
-            $dollarValues = Dollar::whereBetween('date', [$startDate, $endDate])->get();
-        } else {
-          
-            $dollarValues = Dollar::all();
+            $dollarValues = Dollar::whereBetween('date', [$startDate, $endDate]) ->orderBy('date', 'desc')->get();
+        } else { 
+            $dollarValues = Dollar::orderBy('date', 'desc') ->limit(30)->get();
         }
 
         return response()->json($dollarValues);
@@ -85,7 +84,7 @@ public function destroyMultiple(Request $request)
 
     Dollar::whereIn('id', $ids)->delete();
 
-    $DollarGet = Dollar::all();
+    $DollarGet = Dollar::orderBy('date', 'desc') ->limit(30)->get();
 
     return response()->json($DollarGet);
 }

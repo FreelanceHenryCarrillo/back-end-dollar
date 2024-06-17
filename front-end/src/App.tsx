@@ -20,20 +20,10 @@ import useWindowDimensions from "./libs/hooks";
 function App() {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
-  const [isFiltered, setisFiltered] = useState<boolean>(false);
   const { width: windowWidth } = useWindowDimensions();
   const dispatch = useAppDispatch();
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
   const dollar = useAppSelector(listDollar);
 
-  const LESS_30_DAYS = -30;
-
-  /* NOTE: Data for the last 30 days */
-  const defaultData = dollar
-    .filter((usd) => new Date(usd.date).getFullYear() === currentYear)
-    .sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date)))
-    .slice(LESS_30_DAYS);
 
     /* Responsive */
   let chartWidth = 900;
@@ -55,13 +45,12 @@ function App() {
             startDate={startDate}
             setEndDate={setEndDate}
             endDate={endDate}
-            setisFiltered={setisFiltered}
           />
 
           <LineChart
             width={chartWidth}
             height={500}
-            data={isFiltered ? dollar : defaultData}
+            data={ dollar }
             margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
           >
             <Line

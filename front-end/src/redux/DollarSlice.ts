@@ -38,6 +38,7 @@ export const DollarSlice = createSlice({
     },
     deleteMultipleDollar: (state, action) => {
       state.list = action.payload;
+      state.loading = false;
     },
     setLoading: (state) => {
       state.loading = true;
@@ -54,6 +55,7 @@ export const loading = (state: RootState) => state.dollar.loading;
 export const getAllDollar = (): AppThunk => async (dispatch) => {
   try {
     dispatch(setLoading());
+    /* ${URL_HOST_PROD} */
     const res = await axios.get(`${URL_HOST_PROD}/api/dollar-values`);
     dispatch(getDollar(res.data));
   } catch (error) {

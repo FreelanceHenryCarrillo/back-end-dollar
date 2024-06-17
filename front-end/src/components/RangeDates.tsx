@@ -11,7 +11,6 @@ import { TypeSelectionDate } from "../types.global";
 type PropsRangeDates = {
   setStartDate: Dispatch<SetStateAction<string>>;
   setEndDate: Dispatch<SetStateAction<string>>;
-  setisFiltered: Dispatch<SetStateAction<boolean>>;
   startDate: string;
   endDate: string;
 };
@@ -21,7 +20,6 @@ const RangeDates = ({
   startDate,
   setEndDate,
   endDate,
-  setisFiltered,
 }: PropsRangeDates) => {
   const dispatch = useAppDispatch();
   const YEAR_LIMIT_PAST = "2023-01-01";
@@ -39,11 +37,9 @@ const RangeDates = ({
   const handleClickSearch = () => {
     if (startDate && endDate) {
       dispatch(searchDateDollarRange(startDate, endDate));
-      setisFiltered(true);
       toast.success("se realizo la busqueda correctamente");
     } else {
       toast.warn("Los 2 campos de fecha son obligatorios");
-      setisFiltered(false);
     }
   };
 
@@ -84,7 +80,6 @@ const RangeDates = ({
         color={"primary"}
         style={{ height: "100%" }}
         onClick={() => {
-          setisFiltered(false);
           setEndDate("");
           setStartDate("");
           dispatch(getAllDollar());

@@ -58,7 +58,6 @@ export default function BasicTable({ data }: TableProps) {
   ) => {
     event.preventDefault();
     const validateRegex = new RegExp("[A-Za-z]");
-    console.log(valueCell);
     if (
       valueCell &&
       typeof valueCell === "string" &&
@@ -168,7 +167,7 @@ export default function BasicTable({ data }: TableProps) {
                       >
                         <input
                           className="cell-table-input"
-                          type="text"
+                          type="number"
                           placeholder={row.value.toString()}
                           onChange={handleInputChange}
                         />
