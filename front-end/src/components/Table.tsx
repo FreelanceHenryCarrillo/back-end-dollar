@@ -145,6 +145,7 @@ export default function BasicTable({ data }: TableProps) {
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
+                      aria-label="checkbox"
                       color="primary"
                       data-indeterminate="false"
                       onChange={(e) => handleChangeSelectMultiple(e, row.id)}

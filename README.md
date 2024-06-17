@@ -1,8 +1,8 @@
 # Front React + TypeScript + Vite | Back Laravel | Base de datos Postgres
 
-Github: https://github.com/FreelanceHenryCarrillo/dollar-prueba-tecnica
-URL Produccion : https://dollar-prueba-tecnica.netlify.app/
-URL Back produccion : https://dollar-prueba-tecnica-production.up.railway.app
+- Github: https://github.com/FreelanceHenryCarrillo/dollar-prueba-tecnica
+- URL Produccion : https://dollar-prueba-tecnica.netlify.app/
+- URL Back produccion : https://dollar-prueba-tecnica-production.up.railway.app
 
 # FRONT
 
