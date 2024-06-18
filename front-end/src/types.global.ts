@@ -13,3 +13,9 @@ export enum TypeSelectionDate {
   START = "start",
   END = "end",
 }
+
+export enum TypeInputHandle {
+  SEARCH_DATE = 'searchDate',
+  EDIT_CELL = 'editCell',
+  SEARCH_VALUE = 'searchValue'
+}

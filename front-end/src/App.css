@@ -118,6 +118,22 @@
   justify-content: space-evenly;
 }
 
+.input-table-search {
+  display: block;
+  padding: 5px;
+  border: none;
+  background-color: rgb(224, 223, 223);
+  border-radius: 5px;
+  height: 100%;
+  width: 150px;
+  
+
+  &:focus{
+    outline-style: none;
+    border: none;
+  }
+}
+
 @media (max-width: 1440px) {
   .container {
     display: flex;

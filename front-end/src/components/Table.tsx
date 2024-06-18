@@ -8,8 +8,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { DolarRange } from "../types.global";
-import { Button, Checkbox, Fab, TablePagination, Tooltip } from "@mui/material";
+import { DolarRange, TypeInputHandle } from "../types.global";
+import {
+  Button,
+  Checkbox,
+  Fab,
+  TablePagination,
+  Tooltip,
+} from "@mui/material";
 import { Cancel, Edit, Info } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -31,6 +37,7 @@ export default function BasicTable({ data }: TableProps) {
   const [valueCell, setValueCell] = React.useState<number | string | null>(
     null
   );
+  const [searchDate, setSearchDate] = React.useState<string>("");
   const [selectMultiple, setSelectMultiple] = React.useState<number[]>([]);
   const dispatch = useAppDispatch();
   const loadingDollar = useAppSelector(loading);
@@ -47,11 +54,22 @@ export default function BasicTable({ data }: TableProps) {
     setPage(newPage);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    type: string
+  ) => {
     const value = event.target.value;
 
-    setValueCell(value);
+    if (type === TypeInputHandle.SEARCH_DATE) {
+      setSearchDate(value);
+      setPage(0);
+      setRowsPerPage(10);
+    }
+    if (type === TypeInputHandle.EDIT_CELL) {
+      setValueCell(value);
+    }
   };
+
   const handleSumbit = (
     event: React.FormEvent<HTMLFormElement>,
     id: number
@@ -102,6 +120,7 @@ export default function BasicTable({ data }: TableProps) {
   React.useEffect(() => {
     setPage(0);
     setRowsPerPage(10);
+    setSearchDate("");
   }, [newData.length]);
 
   return (
@@ -127,7 +146,21 @@ export default function BasicTable({ data }: TableProps) {
           <TableHead>
             <TableRow>
               <TableCell align="inherit">Selection</TableCell>
-              <TableCell align="inherit">Date</TableCell>
+              <TableCell
+                align="inherit"
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                <span>Date</span>
+                <input
+                  className="input-table-search"
+                  type="text"
+                  value={searchDate}
+                  placeholder="search date"
+                  onChange={(e) =>
+                    handleInputChange(e, TypeInputHandle.SEARCH_DATE)
+                  }
+                />
+              </TableCell>
               <TableCell align="inherit">
                 Values
                 <Tooltip title="Doble click para editar las celdas">
@@ -153,6 +186,11 @@ export default function BasicTable({ data }: TableProps) {
               </TableRow>
             ) : (
               newData
+                .filter((data) =>
+                  !data.date.includes(searchDate)
+                    ? data.date.includes(searchDate)
+                    : data
+                )
                 .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                 .sort(
                   (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
@@ -189,7 +227,9 @@ export default function BasicTable({ data }: TableProps) {
                             className="cell-table-input"
                             type="text"
                             placeholder={row.value.toString()}
-                            onChange={handleInputChange}
+                            onChange={(e) =>
+                              handleInputChange(e, TypeInputHandle.EDIT_CELL)
+                            }
                           />
                           <Fab
                             color="primary"
@@ -219,16 +259,18 @@ export default function BasicTable({ data }: TableProps) {
         </Table>
       </TableContainer>
       <div className="container-footer-table">
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={data.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          style={{ width: "100%", marginRight: "20px" }}
-        />
+        {!searchDate.length && (
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={data.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            style={{ width: "100%", marginRight: "20px" }}
+          />
+        )}
       </div>
     </>
   );
